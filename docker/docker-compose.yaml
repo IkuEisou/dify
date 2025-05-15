@@ -1183,17 +1183,17 @@ services:
     volumes:
       - ./volumes/unstructured:/app/data
 
-  mermaid-flask-service:
-    build: ./mermaid-flask-service
-    container_name: mermaid-flask-service
-    restart: always
-    volumes:
-      - ./mermaid-flask-service/data:/app/data
-    ports:
-      - 5002:5002
-    networks:
-      - ssrf_proxy_network
-      - default
+  # mermaid-flask-service:
+  #   build: ./mermaid-flask-service
+  #   container_name: mermaid-flask-service
+  #   restart: always
+  #   volumes:
+  #     - ./mermaid-flask-service/data:/app/data
+  #   ports:
+  #     - 5002:5002
+  #   networks:
+  #     - ssrf_proxy_network
+  #     - default
 
 networks:
   # create a network between sandbox, api and ssrf_proxy, and can not access outside.
