@@ -15,3 +15,6 @@ pydub==0.25.1
 google-api-python-client==2.70.0
 google-auth==2.20.0
 google_auth_oauthlib==1.0.0
+python-pptx==0.6.21
+python-docx==0.8.11
+openpyxl==3.1.2
