@@ -992,7 +992,11 @@ services:
     ports:
       - "${OCEANBASE_VECTOR_PORT:-2881}:2881"
     healthcheck:
-      test: [ 'CMD-SHELL', 'obclient -h127.0.0.1 -P2881 -uroot@test -p$${OB_TENANT_PASSWORD} -e "SELECT 1;"' ]
+      test:
+        [
+          "CMD-SHELL",
+          'obclient -h127.0.0.1 -P2881 -uroot@test -p$${OB_TENANT_PASSWORD} -e "SELECT 1;"',
+        ]
       interval: 10s
       retries: 30
       start_period: 30s
@@ -1241,17 +1245,17 @@ services:
     volumes:
       - ./volumes/unstructured:/app/data
 
-  # mermaid-flask-service:
-  #   build: ./mermaid-flask-service
-  #   container_name: mermaid-flask-service
-  #   restart: always
-  #   volumes:
-  #     - ./mermaid-flask-service/data:/app/data
-  #   ports:
-  #     - 5002:5002
-  #   networks:
-  #     - ssrf_proxy_network
-  #     - default
+  mermaid-flask-service:
+    build: ./mermaid-flask-service
+    container_name: mermaid-flask-service
+    restart: always
+    volumes:
+      - ./mermaid-flask-service/data:/app/data
+    ports:
+      - 5002:5002
+    networks:
+      - ssrf_proxy_network
+      - default
   blender-mcp-api: # 这是您的新服务名称
     build: ./blender-mcp-api # 指向 Dockerfile 所在的目录
     ports:
