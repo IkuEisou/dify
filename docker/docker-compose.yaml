@@ -1252,6 +1252,13 @@ services:
   #   networks:
   #     - ssrf_proxy_network
   #     - default
+  blender-mcp-api: # 这是您的新服务名称
+    build: ./blender-mcp-api # 指向 Dockerfile 所在的目录
+    ports:
+      - "5005:5005" # 将容器的 5000 端口映射到宿主机的 5000 端口（可选，但方便测试）
+    networks:
+      - default # 确保它与 Dify 的其他服务在同一个网络中
+    restart: always # 容器停止后自动重启
 
 networks:
   # create a network between sandbox, api and ssrf_proxy, and can not access outside.
