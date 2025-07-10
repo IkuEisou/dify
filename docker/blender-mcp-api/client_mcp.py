@@ -5,7 +5,7 @@ import base64
 
 
 class BlenderMCPClient:
-    def __init__(self, host="192.168.11.13", port=9876):
+    def __init__(self, host="192.168.11.17", port=9876):
         self.host = host
         self.port = port
         self.socket = None
