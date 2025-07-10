@@ -1256,6 +1256,7 @@ services:
     networks:
       - ssrf_proxy_network
       - default
+      
   blender-mcp-api: # 这是您的新服务名称
     build: ./blender-mcp-api # 指向 Dockerfile 所在的目录
     ports:
