@@ -136,6 +136,7 @@ export type Variable = {
     variable: string
   }
   value_selector: ValueSelector
+  value_type?: VarType
   variable_type?: VarKindType
   value?: string
   options?: string[]
@@ -148,6 +149,7 @@ export type EnvironmentVariable = {
   name: string
   value: any
   value_type: 'string' | 'number' | 'secret'
+  description: string
 }
 
 export type ConversationVariable = {
