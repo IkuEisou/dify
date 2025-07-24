@@ -39,6 +39,9 @@ type PureSelectProps = {
     itemClassName?: string
     title?: string
   },
+  placeholder?: string
+  disabled?: boolean
+  triggerPopupSameWidth?: boolean
 }
 const PureSelect = ({
   options,
@@ -47,6 +50,9 @@ const PureSelect = ({
   containerProps,
   triggerProps,
   popupProps,
+  placeholder,
+  disabled,
+  triggerPopupSameWidth,
 }: PureSelectProps) => {
   const { t } = useTranslation()
   const {
@@ -74,7 +80,7 @@ const PureSelect = ({
   }, [onOpenChange])
 
   const selectedOption = options.find(option => option.value === value)
-  const triggerText = selectedOption?.label || t('common.placeholder.select')
+  const triggerText = selectedOption?.label || placeholder || t('common.placeholder.select')
 
   return (
     <PortalToFollowElem
@@ -82,9 +88,10 @@ const PureSelect = ({
       offset={offset || 4}
       open={mergedOpen}
       onOpenChange={handleOpenChange}
+      triggerPopupSameWidth={triggerPopupSameWidth}
     >
       <PortalToFollowElemTrigger
-        onClick={() => handleOpenChange(!mergedOpen)}
+        onClick={() => !disabled && handleOpenChange(!mergedOpen)}
         asChild
       >
         <div
@@ -109,7 +116,7 @@ const PureSelect = ({
         </div>
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent className={cn(
-        'z-10',
+        'z-[9999]',
         popupWrapperClassName,
       )}>
         <div
@@ -135,6 +142,7 @@ const PureSelect = ({
                 )}
                 title={option.label}
                 onClick={() => {
+                  if (disabled) return
                   onChange?.(option.value)
                   handleOpenChange(false)
                 }}
